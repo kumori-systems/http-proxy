@@ -19,7 +19,7 @@ class HttpProxy
   _onRequest: (request, response) =>
     method = 'httpProxy._onRequest'
     @logger.debug "#{method}"
-    @nodeProxy.web(request, response, @nodeProxyOptions);
+    @nodeProxy.web(request, response, @nodeProxyOptions)
 
 
 module.exports = HttpProxy
