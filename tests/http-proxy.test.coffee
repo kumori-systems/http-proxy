@@ -195,8 +195,8 @@ describe 'http-proxy test', ->
         url: '/'
         method: method
         headers:
-          host:"localhost:8080",
-          connection:"keep-alive"
+          host: 'localhost:8080',
+          connection: 'keep-alive'
       if use_instancespath? then requestData.headers.instancespath = ''
     return JSON.stringify {
       type: type
