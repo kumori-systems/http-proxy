@@ -6,20 +6,23 @@ class HttpProxy
 
 
   constructor: (@server, @ip, @port) ->
-    method = 'HttpProxy.constructor'
-    @logger.info "#{method}"
-    @nodeProxy = nodeHttpProxy.createProxyServer({})
-    @nodeProxyOptions =
+    @logger.info 'HttpProxy.constructor'
+    @nodeProxy = nodeHttpProxy.createProxyServer
       target:
         host: @ip
         port: @port
     @server.on 'request', @_onRequest
+    @server.on 'upgrade', @_onUpgrade
 
 
   _onRequest: (request, response) =>
-    method = 'httpProxy._onRequest'
-    @logger.debug "#{method}"
-    @nodeProxy.web(request, response, @nodeProxyOptions)
+    @logger.debug 'httpProxy._onRequest'
+    @nodeProxy.web request, response
+
+
+  _onUpgrade: (request, socket, head) =>
+    @logger.debug 'httpProxy._onUpgrade'
+    @nodeProxy.ws request, socket, head
 
 
 module.exports = HttpProxy
