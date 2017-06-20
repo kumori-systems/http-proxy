@@ -21,10 +21,10 @@
     "coffee-script": "1.10.0",
     "q": "1.4.1",
     "http-proxy": "1.13.3",
-    "slaputils":"git+ssh://git@gitlab.com:ECloud/slap-utils.git#STABILITY"
+    "slaputils":"git+ssh://git@gitlab.com:ECloud/slap-utils.git#master"
   },
   "devDependencies": {
-    "http-message":"git+ssh://git@gitlab.com:ECloud/http-message.git#STABILITY",
+    "http-message":"git+ssh://git@gitlab.com:ECloud/http-message.git#master",
     "coffee-coverage": "1.0.1",
     "coffeelint": "1.12.1",
     "istanbul": "0.4.2",
