@@ -20,7 +20,7 @@
   "dependencies": {
     "coffee-script": "1.10.0",
     "q": "1.4.1",
-    "http-proxy": "1.16.1",
+    "http-proxy": "1.16.2",
     "slaputils":"git+ssh://git@gitlab.com:ECloud/slap-utils.git#master"
   },
   "devDependencies": {
