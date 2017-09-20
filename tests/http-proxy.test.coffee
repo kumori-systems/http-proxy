@@ -54,6 +54,7 @@ class Request extends EventEmitter
 
 logger = null
 
+proxy = null
 httpMessageServer = null
 replyChannel = null
 dynReplyChannel = null
@@ -118,7 +119,7 @@ describe 'http-proxy test', ->
           dynReplyChannel = message[1][0]
           dynReplyChannel.constructor.name.should.be.eql 'Reply'
           dynReplyChannel.name.should.be.eql 'dyn_rep_0'
-          httpProxy httpMessageServer, nativeHost, nativePort
+          proxy = httpProxy httpMessageServer, nativeHost, nativePort
           done()
         .fail (err) -> done err
 
@@ -186,6 +187,20 @@ describe 'http-proxy test', ->
       r3.type.should.be.eql 'end'
       r3.reqId.should.be.eql reqId
       done()
+
+
+  it 'Process error events', (done) ->
+    forcedError = 'This is forced error'
+    endThis = (error) ->
+      proxy.removeAllListeners 'error'
+      done error
+    proxy.on 'error', (error) ->
+      try
+        error.message.should.eql forcedError
+        endThis()
+      catch err
+        endThis err
+    proxy.nodeProxy.emit 'error', new Error forcedError
 
 
   _createMessage = (type, reqId, method, use_instancespath) ->
