@@ -1,11 +1,13 @@
 nodeHttpProxy = require 'http-proxy'
 EventEmitter = require 'events'
+slaputils = require 'slaputils'
 
 
 class HttpProxy extends EventEmitter
 
-
   constructor: (@server, @ip, @port) ->
+    if not @logger? # If logger hasn't been injected from outside
+      slaputils.setLogger [HttpProxy]
     @logger.info 'HttpProxy.constructor'
     @nodeProxy = nodeHttpProxy.createProxyServer
       target:
