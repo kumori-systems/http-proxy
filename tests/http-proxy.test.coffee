@@ -1,11 +1,23 @@
 q = require 'q'
 EventEmitter = require('events').EventEmitter
-slaputils = require 'slaputils'
 should = require 'should'
 supertest = require 'supertest'
 nativeHttp = require 'http'
 http = require '@kumori/http-message'
 httpProxy = require '../src/index'
+
+#### START: ENABLE LOG LINES FOR DEBUGGING ####
+# This will show all log lines in the code if the test are executed with
+# DEBUG="kumori:*" set in the environment. For example, running:
+#
+# $ DEBUG="kumori:*" npm test
+#
+debug = require 'debug'
+# debug.enable 'http-proxy:*'
+# debug.enable 'http-proxy:info, kumori:debug'
+debug.log = () ->
+  console.log arguments...
+#### END: ENABLE LOG LINES FOR DEBUGGING ####
 
 #-------------------------------------------------------------------------------
 class Reply extends EventEmitter
@@ -52,8 +64,6 @@ class Request extends EventEmitter
 
 #-------------------------------------------------------------------------------
 
-logger = null
-
 proxy = null
 httpMessageServer = null
 replyChannel = null
@@ -74,20 +84,6 @@ nativeResponse = 'Hola Radiola'
 describe 'http-proxy test', ->
 
   before (done) ->
-    slaputils.setLoggerOwner 'http-proxy'
-    logger = slaputils.getLogger 'http-proxy'
-    logger.configure {
-      'console-log' : false
-      'console-level' : 'debug'
-      'colorize': true
-      'file-log' : false
-      'file-level': 'debug'
-      'file-filename' : 'slap.log'
-      'http-log' : false
-      'vm' : ''
-      'auto-method': false
-    }
-
     nativeServer = nativeHttp.createServer (request, response) ->
       data = ''
       request.on 'data', (chunk) ->
@@ -129,7 +125,7 @@ describe 'http-proxy test', ->
     done()
 
 
-  it 'Process a request', (done) ->
+  it 'Process a request', () ->
     dynRequestChannel.resetSentMesages()
     reqId = "#{reqIdCount++}"
     m1 = _createMessage 'request', reqId, 'get', true
@@ -155,10 +151,9 @@ describe 'http-proxy test', ->
       r2data.should.be.eql 'RESPONSE:'
       r3.type.should.be.eql 'end'
       r3.reqId.should.be.eql reqId
-      done()
 
 
-  it 'Process a request with payload', (done) ->
+  it 'Process a request with payload', () ->
 
     reqId = "#{reqIdCount++}"
     m1 = _createMessage 'request', reqId, 'post'
@@ -186,7 +181,6 @@ describe 'http-proxy test', ->
       r2data.should.be.eql "RESPONSE:#{MESSAGE}"
       r3.type.should.be.eql 'end'
       r3.reqId.should.be.eql reqId
-      done()
 
 
   it 'Process error events', (done) ->

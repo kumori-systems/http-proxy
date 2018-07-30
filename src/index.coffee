@@ -1,7 +1,4 @@
-slaputils = require 'slaputils'
-HttpProxy = require('./http-proxy')
-
-slaputils.setParser [HttpProxy]
+HttpProxy = require('./http-proxy').HttpProxy
 
 module.exports = (server, ip, port) ->
   return new HttpProxy(server, ip, port)
