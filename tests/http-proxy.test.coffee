@@ -4,7 +4,7 @@ slaputils = require 'slaputils'
 should = require 'should'
 supertest = require 'supertest'
 nativeHttp = require 'http'
-http = require 'http-message'
+http = require '@kumori/http-message'
 httpProxy = require '../src/index'
 
 #-------------------------------------------------------------------------------
