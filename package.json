@@ -1,6 +1,6 @@
 {
   "name": "http-message-proxy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "httpProxy for slap components",
   "author": "Juanjo Valero <jvalero@iti.es>",
   "private": true,
