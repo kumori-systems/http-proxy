@@ -46,6 +46,6 @@
     "extends": "semantic-release-shared-config",
     "noCi": false,
     "dryRun": false,
-    "npmPublish": false
+    "npmPublish": true
   }
 }
