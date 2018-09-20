@@ -1,5 +1,4 @@
 debug = require 'debug'
-uuid = require 'node-uuid'
 
 BASE = 'http-proxy'
 
