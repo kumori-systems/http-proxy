@@ -3,6 +3,7 @@ debug = require 'debug'
 BASE = 'http-proxy'
 
 exports.getLogger = ->
+
   return {
     error: debug("#{BASE}:error")
     warn: debug("#{BASE}:warn")
