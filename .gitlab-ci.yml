@@ -27,4 +27,5 @@ publish:
         LAST_VERSION=$( git describe --tags ) && git push gitlab $LAST_VERSION
       fi
   only:
-    - master
+    - master@ECloud/http-proxy
+
