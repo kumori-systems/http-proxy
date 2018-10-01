@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/kumori-systems/http-proxy/compare/v1.0.2...v1.0.3) (2018-10-01)
+
+
+### Bug Fixes
+
+* **license:** MIT License ([f377ba3](https://github.com/kumori-systems/http-proxy/commit/f377ba3))
+
 ## [1.0.2](https://github.com/kumori-systems/http-proxy/compare/v1.0.1...v1.0.2) (2018-09-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@kumori/http-message-proxy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "httpProxy for slap components",
   "author": "Kumori Systems <info@kumori.systems>",
   "license": "MIT",
